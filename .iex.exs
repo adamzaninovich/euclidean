@@ -1,0 +1,4 @@
+alias Euclidean.{
+  Algorithm,
+  Sequencer
+}
