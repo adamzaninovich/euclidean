@@ -79,12 +79,12 @@ defmodule Euclidean.Sequencer.Clock do
   def handle_info(_message, state), do: {:noreply, state}
 
   defp schedule_next_tick(time, swing, :down) do
-    swing_time = trunc(time * (swing - 150) / 100)
+    swing_time = trunc(time * (swing - 50 + 100) / 100)
     Process.send_after(self(), :tick, swing_time)
   end
 
   defp schedule_next_tick(time, swing, :up) do
-    swing_time = trunc(time * (150 - swing) / 100)
+    swing_time = trunc(time * (50 - swing + 100) / 100)
     Process.send_after(self(), :tick, swing_time)
   end
 
