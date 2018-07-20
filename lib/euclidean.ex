@@ -1,18 +1,7 @@
 defmodule Euclidean do
   @moduledoc """
   Documentation for Euclidean.
+
+  See Euclidean.Algorithm for information behind generating Euclidean rhythms
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Euclidean.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end

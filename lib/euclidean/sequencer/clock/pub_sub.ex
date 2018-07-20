@@ -1,4 +1,8 @@
 defmodule Euclidean.Sequencer.Clock.PubSub do
+  @moduledoc """
+  The PubSub server is used to subscribe tracks to clocks and publishing ticks
+  from those clocks to all subscribed tracks.
+  """
   use GenServer
 
   def start_link(opts \\ []) do
@@ -30,9 +34,9 @@ defmodule Euclidean.Sequencer.Clock.PubSub do
     {:reply, :ok, remove_sub(sub, clock, state)}
   end
 
-  def handle_cast({:publish, message, from}, state) do
+  def handle_cast({:publish, message, clock}, state) do
     subs = Map.get(state, clock, [])
-    for sub <- subs, do: send(sub, {message, from})
+    for sub <- subs, do: send(sub, {message, clock})
     {:noreply, state}
   end
 
