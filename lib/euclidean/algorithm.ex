@@ -16,7 +16,24 @@ defmodule Euclidean.Algorithm do
   distributed as evenly as possible among the zero's.
   """
 
-  @spec euclid(pos_integer(), pos_integer()) :: [0 | 1]
+  @type step :: 0 | 1
+  @type sequence :: [step()]
+
+  @spec rotate(sequence(), integer()) :: sequence()
+  def rotate(seq, 0), do: seq
+
+  def rotate([step | seq], n) when n > 0 do
+    rotate(seq ++ [step], n - 1)
+  end
+
+  def rotate(seq, n) when n < 0 do
+    seq
+    |> :lists.reverse()
+    |> rotate(-n)
+    |> :lists.reverse()
+  end
+
+  @spec euclid(pos_integer(), pos_integer()) :: sequence()
   def euclid(pulses, steps) when pulses > steps do
     {:error, "You cannot have more pulses than steps"}
   end

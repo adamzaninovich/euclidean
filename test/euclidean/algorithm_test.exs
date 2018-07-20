@@ -3,6 +3,14 @@ defmodule Euclidean.AlgorithmTest do
 
   import Euclidean.Algorithm
 
+  test "rotate rotates a sequence left for positive and right for negative" do
+    assert rotate([1, 0], 1) == [0, 1]
+    assert rotate([0, 1, 0], 1) == [1, 0, 0]
+    assert rotate([0, 1, 0], -1) == [0, 0, 1]
+    assert rotate([1, 0, 0], 3) == [1, 0, 0]
+    assert rotate([1, 0, 0], -3) == [1, 0, 0]
+  end
+
   test "euclid returns a sequence" do
     assert euclid(0, 8) == [0, 0, 0, 0, 0, 0, 0, 0]
 
